@@ -1,0 +1,12 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Use any provider you want, but this uses PostGreSQL. You could even use MongoDB standalone through mongoose/typegoose instead of prisma.
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id        String   @unique
+}
