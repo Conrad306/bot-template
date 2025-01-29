@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { InteractionOptions } from '../../../types';
+import { TextCommandOptions } from '../../../types';
 import { ExtendedClient } from '../ExtendedClient';
 
 export default class TextCommand {
@@ -11,7 +11,7 @@ export default class TextCommand {
   constructor(
     name: string,
     client: ExtendedClient,
-    options: Pick<InteractionOptions, 'devOnly' | 'description'>,
+    options: TextCommandOptions,
   ) {
     this.name = name;
     this.description = options.description;

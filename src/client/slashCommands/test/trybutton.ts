@@ -22,7 +22,9 @@ export default class TryButtonCommand extends SlashCommand {
         .setStyle(ButtonStyle.Primary),
     );
     return interaction.reply(
-      this.client.utils.generateSuccessMessage({ title: 'Success!' }, [row]),
+      this.client.utils.generateSuccessInteraction({ title: 'Success!' }, [
+        row,
+      ]),
     );
   }
 }

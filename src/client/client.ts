@@ -1,5 +1,5 @@
 import { ExtendedClient } from '../../lib/common/ExtendedClient';
-import { clientConfig } from '../../lib/config/ClientConfig';
+import { clientConfig } from '../../lib/config/clientConfig';
 
 const client = new ExtendedClient({
   allowedMentions: { parse: ['users'] },

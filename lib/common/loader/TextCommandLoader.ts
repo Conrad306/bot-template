@@ -3,7 +3,7 @@ import { ExtendedClient } from '../ExtendedClient';
 import { pathToFileURL } from 'url';
 import TextCommand from '../command/TextCommand';
 import { existsSync } from 'fs';
-import { Message, MessageReplyOptions } from 'discord.js';
+import { Message, MessageFlags, MessageReplyOptions } from 'discord.js';
 
 export class TextCommandLoader {
   public client: ExtendedClient;
@@ -89,10 +89,9 @@ export class TextCommandLoader {
           description: 'An unexpected error has occured.',
         },
         [],
-        true,
       );
 
-      return message.reply({ embeds: response.embeds });
+      return message.reply(response);
     });
   }
 }

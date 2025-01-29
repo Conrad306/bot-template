@@ -5,14 +5,25 @@ import {
   ApplicationCommandOptionData,
   AutocompleteInteraction,
   BitFieldResolvable,
+  ButtonBuilder,
   ButtonInteraction,
   CommandInteraction,
+  Embed,
+  MessageActionRowComponentBuilder,
   MessageFlags,
+  MessageFlagsString,
 } from 'discord.js';
 
-/** Defined interaction options for extended interaction classes. */
-export interface InteractionOptions {
+/** Defined base options for extended command handler classes. */
+export type BaseCommandOptions = {
+  /**
+   * The description used.
+   * If used for text command, it is added to the `help` command.
+   */
   description?: string;
+};
+
+export type InteractionCommandOptions = BaseCommandOptions & {
   /** Whether it can only be run in a guild */
   guildOnly?: boolean;
   /** Whether it can only be run by the owner of the bot */
@@ -21,7 +32,16 @@ export interface InteractionOptions {
   ownerOnly?: boolean;
 
   applicationData?: ApplicationCommandOptionData[];
-}
+};
+
+export type ApplicationInteractionCommandOptions = InteractionCommandOptions & {
+  cooldown?: number;
+};
+
+export type TextCommandOptions = Omit<
+  ApplicationInteractionCommandOptions,
+  'applicationData'
+>;
 
 export enum InteractionType {
   AutoComplete,
@@ -30,7 +50,6 @@ export enum InteractionType {
   Button,
   ModalSubmit,
 }
-
 export type InteractionGroups =
   | AnySelectMenuInteraction
   | CommandInteraction
@@ -47,3 +66,10 @@ export const BaseInteractionType: Map<InteractionType, string> = new Map<
   [InteractionType.SelectMenu, 'Select Menu'],
   [InteractionType.AutoComplete, 'Auto-complete'],
 ]);
+
+export interface GeneratedMessage {
+  embeds?: APIEmbed[];
+  components?: ActionRowBuilder<MessageActionRowComponentBuilder>[];
+  flags?: MessageFlags;
+  content?: string;
+}

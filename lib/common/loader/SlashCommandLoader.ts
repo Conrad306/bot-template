@@ -1,15 +1,24 @@
-import { CommandInteraction } from 'discord.js';
+import {
+  Collection,
+  CommandInteraction,
+  InteractionReplyOptions,
+} from 'discord.js';
 import { ExtendedClient } from '../ExtendedClient';
 import { BaseInteractionLoader } from './BaseInteractionLoader';
 import { SlashCommand } from '../command/SlashCommand';
 import { InteractionType } from '../../../types/index';
 export class SlashCommandLoader extends BaseInteractionLoader {
+  public cooldowns: Collection<string, Collection<string, number>>;
+
   constructor(client: ExtendedClient) {
     super(client);
+
+    this.cooldowns = new Collection();
   }
 
   public override async load() {
     await super.load('slashCommands');
+
     setTimeout(async () => {
       if (process.env.NODE_ENV === 'development') {
         this.client.logger.info(
@@ -63,7 +72,7 @@ export class SlashCommandLoader extends BaseInteractionLoader {
     this.load();
   }
 
-  private fetchCommand(name: string): SlashCommand | undefined {
+  public fetchCommand(name: string): SlashCommand | undefined {
     return this.client.slashCommands.get(name);
   }
 
@@ -83,7 +92,9 @@ export class SlashCommandLoader extends BaseInteractionLoader {
 
     if (missingPermissions) {
       return interaction.reply(
-        this.client.utils.generateErrorMessage(missingPermissions),
+        this.client.utils.generateErrorInteraction(
+          missingPermissions,
+        ) as InteractionReplyOptions,
       );
     }
 
@@ -93,7 +104,7 @@ export class SlashCommandLoader extends BaseInteractionLoader {
   private run(command: SlashCommand, interaction: CommandInteraction) {
     command.run(interaction).catch((error): Promise<any> => {
       this.client.logger.error(error);
-      const message = this.client.utils.generateErrorMessage({
+      const message = this.client.utils.generateErrorInteraction({
         title: 'An Error Has Occurred',
         description: `An unexpected error was encountered while running \`${interaction.commandName}\`.`,
       });

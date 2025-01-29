@@ -2,8 +2,9 @@ import { APIEmbed, EmbedData } from 'discord.js';
 import {
   BaseInteractionType,
   InteractionGroups,
-  InteractionOptions,
+  InteractionCommandOptions,
   InteractionType,
+  ApplicationInteractionCommandOptions,
 } from '../../../types/index';
 import { ExtendedClient } from '../ExtendedClient';
 
@@ -11,14 +12,14 @@ export class BaseInteraction {
   name: string;
   description: string;
   client: ExtendedClient;
-  options: InteractionOptions;
+  options: ApplicationInteractionCommandOptions;
   type: InteractionType;
 
   constructor(
     name: string,
     client: ExtendedClient,
     type: InteractionType,
-    options?: InteractionOptions,
+    options?: ApplicationInteractionCommandOptions,
   ) {
     this.name = name;
     this.client = client;

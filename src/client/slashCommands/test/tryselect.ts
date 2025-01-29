@@ -8,7 +8,7 @@ import {
 import { ExtendedClient } from '../../../../lib/common/ExtendedClient';
 import { SlashCommand } from '../../../../lib/common/command/SlashCommand';
 
-export default class TryButtonCommand extends SlashCommand {
+export default class TrySelectCommand extends SlashCommand {
   constructor(client: ExtendedClient) {
     super('tryselect', client, {
       description: 'Test using select menus',
@@ -23,7 +23,9 @@ export default class TryButtonCommand extends SlashCommand {
       selectMenu,
     );
     return interaction.reply(
-      this.client.utils.generateSuccessMessage({ title: 'Success!' }, [row]),
+      this.client.utils.generateSuccessInteraction({ title: 'Success!' }, [
+        row,
+      ]),
     );
   }
 }

@@ -1,5 +1,5 @@
-import { Client, ClientOptions, Collection } from 'discord.js';
-import { clientConfig } from '../config/ClientConfig';
+import { BaseInteraction, Client, ClientOptions, Collection } from 'discord.js';
+import { clientConfig } from '../config/clientConfig';
 import { resolve } from 'path';
 import { Logger } from './Logger';
 import { PrismaClient } from '@prisma/client';

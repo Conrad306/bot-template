@@ -1,6 +1,9 @@
 import { BaseInteraction } from './BaseInteraction';
 import { ExtendedClient } from '../ExtendedClient';
-import { InteractionOptions, InteractionType } from '../../../types/index';
+import {
+  ApplicationInteractionCommandOptions,
+  InteractionType,
+} from '../../../types/index';
 import {
   AutocompleteFocusedOption,
   AutocompleteInteraction,
@@ -10,10 +13,11 @@ export class SlashCommand extends BaseInteraction {
   constructor(
     name: string,
     client: ExtendedClient,
-    options: InteractionOptions,
+    options: ApplicationInteractionCommandOptions,
   ) {
     super(name, client, InteractionType.SlashCommand, options);
     this.description = options.description ?? '';
+    this.options = options;
     this.options.applicationData = options.applicationData || [];
   }
 

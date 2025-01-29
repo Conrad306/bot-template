@@ -1,7 +1,7 @@
 import { ShardingManager } from 'discord.js';
 import { configDotenv } from 'dotenv';
 import { Logger } from '../lib/common/Logger';
-import { clientConfig } from '../lib/config/ClientConfig';
+import { clientConfig } from '../lib/config/clientConfig';
 
 configDotenv();
 

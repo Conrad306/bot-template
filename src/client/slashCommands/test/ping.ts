@@ -2,7 +2,7 @@ import { CommandInteraction } from 'discord.js';
 import { ExtendedClient } from '../../../../lib/common/ExtendedClient';
 import { SlashCommand } from '../../../../lib/common/command/SlashCommand';
 
-export default class ExampleCommand extends SlashCommand {
+export default class PingCommand extends SlashCommand {
   constructor(client: ExtendedClient) {
     super('ping', client, {
       description: 'Get bot latency',

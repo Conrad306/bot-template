@@ -10,7 +10,7 @@ First, clone the repository:
   git clone https://github.com/Conrad306/bot-template.git
 ```
 
-Install dependencies, fill env see (.env.example) and update botconfig information
+Install dependencies, fill env (see .env.example) and update botconfig information
 
 ```bash
 yarn install
@@ -27,7 +27,7 @@ The current file structure is as follows:
         - events/
         - buttons/
         - slashCommands/
-        - autoCompletes/
+        - textCommands/
         - selectMenus/
 
 ```
@@ -57,6 +57,6 @@ Progress:
 Planned Features:
 
 - [ ] Support / development server linking, and channel logging on-error.
-- [ ] Auto-paginated "help" command, which loads from `<Client>.slashCommands`
+- [x] Auto-paginated "help" command, which loads from `<Client>.slashCommands`
 - [ ] Fastify connection for web data.
-- [ ] Ratelimiting / Cooldowns.
+- [x] Ratelimiting / Cooldowns.

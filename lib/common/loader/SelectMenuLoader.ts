@@ -34,7 +34,7 @@ export class SelectMenuLoader extends BaseInteractionLoader {
 
     if (missingPermissions) {
       return interaction.reply(
-        this.client.utils.generateErrorMessage(missingPermissions),
+        this.client.utils.generateErrorInteraction(missingPermissions),
       );
     }
 
@@ -45,7 +45,7 @@ export class SelectMenuLoader extends BaseInteractionLoader {
     await menu.run(interaction).catch((error) => {
       this.client.logger.error(error);
 
-      const message = this.client.utils.generateErrorMessage(
+      const message = this.client.utils.generateErrorInteraction(
         {
           title: 'An error has occured!',
           description: 'An unexpected error has occured.',
